@@ -6,12 +6,15 @@ type StatusPanelProps = {
 };
 
 /**
- * Right-hand side panel that reflects the element currently under the pointer.
- * It is driven entirely by Super Hover's enter/leave/move events.
+ * 反映当前指针下元素的状态区块,完全由 Super Hover 的 enter/leave/move 事件驱动。
+ *
+ * 视觉上作为 ConfigPanel 内部的一个区块(非独立 aside):去掉自身的边框/背景/内边距,
+ * 由外层面板 section 统一提供分隔与留白,与 ModeSwitch、ThemeToggle 视觉协调。
+ * props `{ album, pointer }` 保持不变。
  */
 export function StatusPanel({ album, pointer }: StatusPanelProps) {
   return (
-    <aside className="flex flex-col gap-4 rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900/60">
+    <div className="flex flex-col gap-4">
       <div>
         <p className="text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
           Active element
@@ -49,11 +52,11 @@ export function StatusPanel({ album, pointer }: StatusPanelProps) {
         </p>
       </div>
 
-      <p className="mt-auto text-xs leading-relaxed text-neutral-400 dark:text-neutral-500">
+      <p className="text-xs leading-relaxed text-neutral-400 dark:text-neutral-500">
         Keep the cursor still and scroll the list. Native <code>:hover</code>{" "}
         freezes during scroll, but Super Hover re-runs a hit-test every frame, so
         the highlight keeps following whatever is under your pointer.
       </p>
-    </aside>
+    </div>
   );
 }
