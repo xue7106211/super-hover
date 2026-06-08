@@ -11,9 +11,9 @@ type StatusPanelProps = {
  */
 export function StatusPanel({ album, pointer }: StatusPanelProps) {
   return (
-    <aside className="flex flex-col gap-4 rounded-xl border border-neutral-800 bg-neutral-900/60 p-5">
+    <aside className="flex flex-col gap-4 rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900/60">
       <div>
-        <p className="text-xs uppercase tracking-widest text-neutral-500">
+        <p className="text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
           Active element
         </p>
         {album ? (
@@ -21,31 +21,35 @@ export function StatusPanel({ album, pointer }: StatusPanelProps) {
             <img
               src={album.cover}
               alt={album.title}
-              className="mb-3 aspect-square w-full rounded-lg object-cover ring-1 ring-neutral-800"
+              className="mb-3 aspect-square w-full rounded-lg object-cover ring-1 ring-neutral-200 dark:ring-neutral-800"
             />
-            <p className="font-mono text-sm text-emerald-400">#{album.id}</p>
-            <p className="mt-1 text-lg font-medium text-neutral-100">
+            <p className="font-mono text-sm text-emerald-600 dark:text-emerald-400">
+              #{album.id}
+            </p>
+            <p className="mt-1 text-lg font-medium text-neutral-900 dark:text-neutral-100">
               {album.title}
             </p>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
               {album.artist} · {album.year}
             </p>
           </div>
         ) : (
-          <p className="mt-2 text-neutral-600">— nothing hovered —</p>
+          <p className="mt-2 text-neutral-400 dark:text-neutral-600">
+            — nothing hovered —
+          </p>
         )}
       </div>
 
-      <div className="border-t border-neutral-800 pt-4">
-        <p className="text-xs uppercase tracking-widest text-neutral-500">
+      <div className="border-t border-neutral-200 pt-4 dark:border-neutral-800">
+        <p className="text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
           Pointer (viewport)
         </p>
-        <p className="mt-2 font-mono text-sm text-neutral-300">
+        <p className="mt-2 font-mono text-sm text-neutral-600 dark:text-neutral-300">
           x: {Math.round(pointer.x)} · y: {Math.round(pointer.y)}
         </p>
       </div>
 
-      <p className="mt-auto text-xs leading-relaxed text-neutral-500">
+      <p className="mt-auto text-xs leading-relaxed text-neutral-400 dark:text-neutral-500">
         Keep the cursor still and scroll the list. Native <code>:hover</code>{" "}
         freezes during scroll, but Super Hover re-runs a hit-test every frame, so
         the highlight keeps following whatever is under your pointer.

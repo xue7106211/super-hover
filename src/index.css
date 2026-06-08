@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: dark;
-}
+/* Tailwind v4 默认按系统偏好切换暗色。
+   注册一个基于 .dark class 的自定义变体，才能用 JS 手动覆盖主题。 */
+@custom-variant dark (&:where(.dark, .dark *));
 
 html,
 body,
