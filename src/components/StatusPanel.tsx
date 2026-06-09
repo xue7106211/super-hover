@@ -29,10 +29,13 @@ export function StatusPanel({ album, pointer }: StatusPanelProps) {
             <p className="font-mono text-sm text-emerald-600 dark:text-emerald-400">
               #{album.id}
             </p>
-            <p className="mt-1 text-lg font-medium text-neutral-900 dark:text-neutral-100">
+            <p
+              title={album.title}
+              className="mt-1 truncate text-lg font-medium text-neutral-900 dark:text-neutral-100"
+            >
               {album.title}
             </p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="truncate text-sm text-neutral-500 dark:text-neutral-400">
               {album.artist} · {album.year}
             </p>
           </div>

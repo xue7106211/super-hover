@@ -48,7 +48,8 @@ export function ConfigPanel({
   // 隐藏的一侧用 translate-x-full 滑出右侧屏外 + opacity-0 + pointer-events-none 屏蔽交互,
   // 并用 aria-hidden 对辅助技术隐藏。
   const shellClassName = "fixed right-0 top-1/2 z-50 -translate-y-1/2";
-  const ease = "transition-all duration-300 ease-in-out";
+  const ease =
+    "transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]";
 
   // 展开态:卡片宽 w-72、圆角边框、bg/dark:bg、超高时内部垂直滚动(Req 4.4)。
   return (
@@ -61,7 +62,7 @@ export function ConfigPanel({
         aria-label="展开配置面板"
         tabIndex={panelOpen ? -1 : 0}
         onClick={() => setPanelOpen(true)}
-        className={`absolute right-0 top-1/2 flex h-24 w-9 -translate-y-1/2 items-center justify-center rounded-l-xl border border-r-0 border-neutral-200 bg-white text-neutral-500 shadow-lg hover:text-neutral-800 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 ${ease} ${
+        className={`absolute right-0 top-1/2 flex h-24 w-9 -translate-y-1/2 items-center justify-center rounded-l-xl border border-r-0 border-neutral-200 bg-white text-neutral-500 shadow-lg outline-none hover:text-neutral-800 focus-visible:ring-2 focus-visible:ring-emerald-400/55 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:ring-emerald-300/50 ${ease} ${
           panelOpen
             ? "pointer-events-none translate-x-full opacity-0"
             : "translate-x-0 opacity-100"
@@ -72,13 +73,13 @@ export function ConfigPanel({
 
       <div
         aria-hidden={!panelOpen}
-        className={`w-72 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-l-xl border border-r-0 border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900 ${ease} ${
+        className={`max-h-[calc(100vh-2rem)] w-[21rem] overflow-y-auto rounded-l-2xl border border-r-0 border-neutral-200 bg-white/95 shadow-[0_18px_60px_rgba(0,0,0,0.16)] backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/95 dark:shadow-[0_18px_60px_rgba(0,0,0,0.45)] ${ease} ${
           panelOpen
             ? "translate-x-0 opacity-100"
             : "pointer-events-none translate-x-full opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-4 p-5">
+        <div className="flex flex-col gap-5 p-6">
           {/* 头部:标题 + 折叠触发控件(展开态)。aria-expanded 标注当前态。 */}
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
@@ -89,7 +90,7 @@ export function ConfigPanel({
               aria-expanded={true}
               aria-label="收起配置面板"
               onClick={() => setPanelOpen(false)}
-              className="rounded-md p-1 text-neutral-500 transition-colors hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="rounded-md p-1 text-neutral-500 outline-none transition-colors hover:text-neutral-800 focus-visible:ring-2 focus-visible:ring-emerald-400/55 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:ring-emerald-300/50"
             >
               <ChevronRight aria-hidden className="h-4 w-4" />
             </button>
